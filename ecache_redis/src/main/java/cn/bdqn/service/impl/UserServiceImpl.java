@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -34,6 +33,7 @@ public class UserServiceImpl implements UserService {
     * */
     @Override
     //@Transactional(propagation = Propagation.SUPPORTS ,readOnly = true)
+    @Cacheable(value = "allsyj",key="#p0")
     public List<User> findAllUser(int pageNum, int pageSize) {
 
     /*    SqlSession sqlSession = sessionFactory.openSession();
